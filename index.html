@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>卡密验证</title>
+    <title>鸡毛猜密码大赛</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,6 +13,20 @@
             height: 100vh;
             background-color: #f0f0f0;
             margin: 0;
+        }
+        .open-modal-btn {
+            padding: 20px 40px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .open-modal-btn:hover {
+            background-color: #0056b3;
         }
         .modal {
             display: none;
@@ -27,25 +41,29 @@
         }
         .modal-content {
             background-color: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 30px;
+            border-radius: 15px;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         .modal-content input {
-            padding: 10px;
-            margin-top: 10px;
-            width: 200px;
+            padding: 12px;
+            margin-top: 15px;
+            width: 250px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 16px;
         }
         .modal-content button {
-            padding: 10px 20px;
-            margin-top: 10px;
+            padding: 12px 24px;
+            margin-top: 15px;
             background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
         .modal-content button:hover {
             background-color: #0056b3;
@@ -60,12 +78,12 @@
 </head>
 <body>
 
-<button onclick="openModal()">输入卡密</button>
+<button class="open-modal-btn" onclick="openModal()">输入卡密</button>
 
 <div id="cardModal" class="modal">
     <div class="modal-content">
         <h2>请输入卡密</h2>
-        <input type="text" id="cardInput" placeholder="输入卡密">
+        <input type="text" id="cardInput" placeholder="输入卡密" onkeypress="handleKeyPress(event)">
         <button onclick="validateCard()">提交</button>
         <div id="successMessage" class="success-message">
             恭喜你已获得神秘大奖！
@@ -75,10 +93,11 @@
 </div>
 
 <script>
-    const correctCard = "54gxh88"; // 正确的卡密
+    const correctCard = "fwbly"; // 正确的卡密
 
     function openModal() {
         document.getElementById('cardModal').style.display = 'flex';
+        document.getElementById('cardInput').focus(); // 自动聚焦输入框
     }
 
     function validateCard() {
@@ -90,8 +109,16 @@
         }
     }
 
+    // 在新标签页中打开链接
     function openLink() {
-        window.location.href = "https://i1.wp.com/img.erpweb.eu.org/imgs/2025/01/63416d16ae9c5d7a.png"; // 替换为你想要打开的链接
+        window.open("https://v.douyin.com/ifMW6Bc5/", "_blank"); // 在新标签页中打开链接
+    }
+
+    // 回车键触发验证功能
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            validateCard();
+        }
     }
 </script>
 
